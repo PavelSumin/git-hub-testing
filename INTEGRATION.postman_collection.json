@@ -1,0 +1,5337 @@
+{
+	"info": {
+		"_postman_id": "e14ef11e-c2d9-4c4c-b014-2a65550f9a03",
+		"name": "INTEGRATION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OPEN BANK KK",
+			"item": [
+				{
+					"name": "Создание Клиента ОткрытиеКК",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": \"astra@j.gtc\",\r\n\"passport_lastname\": \"Тест\",\r\n\"passport_middlename\": \"Тест\",\r\n\"passport_name\": \"Тест\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки ОткрытиеКК",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Личные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birth_date\": \"1988-04-06T00:00:00.000+04:00\",\r\n    \"birth_place\": \"Майами\",\r\n    \"gender\": 0,\r\n    \"marital_status\": 10,\r\n    \"under_age_children_count\": 1,\r\n    \"education\": 30,\r\n    \"city\": \"2300300100000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Личные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_personal_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_personal_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "СМС СОПД",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"validation_code\": \"4181\",\r\n    \"debug\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит СМС СОПД",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_validation_code",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_validation_code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные по кредитной карте",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_code\": \"120days\",\r\n    \"branch\": \"8942\",\r\n    \"amount\": 123000,    \r\n    \"secret_code\": \"asddsa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные по кредитной карте",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_product_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_product_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Паспортные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport\": {\r\n        \"passport_date\": \"2009-07-06T00:00:00+03:00\",\r\n        \"passport_number\": \"270718\",\r\n        \"passport_police\": \"ОТДЕЛЕНИЕМ УФМС РОССИИ ПО СТАВРОПОЛЬСКОМУ КРАЮ В КОЧУБЕЕВСКОМ РАЙОНЕ\",\r\n        \"passport_police_code\": \"260-015\",\r\n        \"passport_seria\": \"0709\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Паспортные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_passport_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_passport_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Адрес регистрации",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport_address\": {\r\n        \"building\": \"4/7\",\r\n        \"corpus\": \"2\",\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Краснодар\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"350065\",\r\n        \"region\": \"Краснодарский\",\r\n        \"region_type\": \"край\",\r\n        \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n        \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n        \"service_fias_level\": 8,\r\n        \"service_kladr_id\": \"2300000100016740096\",\r\n        \"service_qc_geo\": 1,\r\n        \"street\": \"им. Валерия Гассия\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    },\r\n    \"registration_date\": \"2021-06-01T00:00:00.000+03:00\",\r\n    \"current_address_optional\": true,\r\n    \"current_address\": {\r\n        \"building\": \"4/7\",\r\n        \"corpus\": \"2\",\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Краснодар\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"350065\",\r\n        \"region\": \"Краснодарский\",\r\n        \"region_type\": \"край\",\r\n        \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n        \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n        \"service_fias_level\": 8,\r\n        \"service_kladr_id\": \"2300000100016740096\",\r\n        \"service_qc_geo\": 1,\r\n        \"street\": \"им. Валерия Гассия\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Адрес регистрации",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_registration_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_registration_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные о работе Шаг - 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pension_status\": 10,\r\n    \"document_type\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные о работе Шаг - 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_job_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_job_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные о работе Шаг - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employment\": {\r\n        \"address\": {\r\n            \"building\": \"4/7\",\r\n            \"corpus\": \"2\",\r\n            \"district\": null,\r\n            \"district_type\": null,\r\n            \"flat\": null,\r\n            \"place\": \"Краснодар\",\r\n            \"place_type\": \"г\",\r\n            \"postalcode\": \"350065\",\r\n            \"region\": \"Краснодарский\",\r\n            \"region_type\": \"край\",\r\n            \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n            \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n            \"service_fias_level\": 8,\r\n            \"service_kladr_id\": \"2300000100016740096\",\r\n            \"service_qc_geo\": 1,\r\n            \"street\": \"им. Валерия Гассия\",\r\n            \"street_type\": \"ул\",\r\n            \"subplace\": null,\r\n            \"subplace_type\": null\r\n        },\r\n        \"company_name\": \"Название орга\",\r\n        \"company_phone\": \"78888888888\",\r\n        \"employer_size\": 10,\r\n        \"income_amount\": 123000,\r\n        \"industry_code\": 10,\r\n        \"legal_form\": 10,\r\n        \"position\": \"Должность\",\r\n        \"position_level\": 10,\r\n        \"start_date\": \"2021-01-31T21:00:00.000Z\",\r\n        \"tax_number\": \"130351647310\",\r\n        \"total_work\": 1,\r\n        \"type\": 10\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные о работе Шаг - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_employment_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_employment_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Дополнительные сведения",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}/commit/enter_history_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_history_data"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "OPEN BANK RKO",
+			"item": [
+				{
+					"name": "Создание Клиента ОткрытиеРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": null,\r\n\"passport_lastname\": \"Шмонтирросяновичева\",\r\n\"passport_middlename\": \"тест\",\r\n\"passport_name\": \"Абдула-муххамед\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки Открытие РКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_ref_rko/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_ref_rko",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OPEN BANK LOAN",
+			"item": [
+				{
+					"name": "Создание Клиента ОткрытиеKH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": \"opel@astraj.gtc\",\r\n\"passport_lastname\": \"Тест\",\r\n\"passport_middlename\": \"Тест\",\r\n\"passport_name\": \"Тест\",\r\n\"personal_phone\": \"79368757945\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки ОткрытиеКН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Личные данные Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birth_date\": \"1988-04-06T00:00:00.000+04:00\",\r\n    \"birth_place\": \"Майами\",\r\n    \"gender\": 0,\r\n    \"marital_status\": 10,\r\n    \"under_age_children_count\": 1,\r\n    \"education\": 30,\r\n    \"city\": \"2300300100000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Личные данные Окрытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_personal_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_personal_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "СМС СОПД Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"validation_code\": \"3092\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит СМС СОПД Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_validation_code",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_validation_code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные по кредиту Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"branch\": \"8942\",\r\n    \"amount\": 123000,\r\n    \"period\": 20,    \r\n    \"secret_code\": \"Кодовое\",\r\n    \"purpose\": 20\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные по кредиту Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_product_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_product_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Паспортные данные Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport\": {\r\n        \"passport_date\": \"2009-07-06T00:00:00+03:00\",\r\n        \"passport_number\": \"270718\",\r\n        \"passport_police\": \"ОТДЕЛЕНИЕМ УФМС РОССИИ ПО СТАВРОПОЛЬСКОМУ КРАЮ В КОЧУБЕЕВСКОМ РАЙОНЕ\",\r\n        \"passport_police_code\": \"260-015\",\r\n        \"passport_seria\": \"0709\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Паспортные Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_passport_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_passport_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Адрес регистрации Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport_address\": {\r\n        \"building\": \"4/7\",\r\n        \"corpus\": \"2\",\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Краснодар\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"350065\",\r\n        \"region\": \"Краснодарский\",\r\n        \"region_type\": \"край\",\r\n        \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n        \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n        \"service_fias_level\": 8,\r\n        \"service_kladr_id\": \"2300000100016740096\",\r\n        \"service_qc_geo\": 1,\r\n        \"street\": \"им. Валерия Гассия\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    },\r\n    \"registration_date\": \"2021-06-01T00:00:00.000+03:00\",\r\n    \"current_address_optional\": true,\r\n    \"current_address\": {\r\n        \"building\": \"4/7\",\r\n        \"corpus\": \"2\",\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Краснодар\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"350065\",\r\n        \"region\": \"Краснодарский\",\r\n        \"region_type\": \"край\",\r\n        \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n        \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n        \"service_fias_level\": 8,\r\n        \"service_kladr_id\": \"2300000100016740096\",\r\n        \"service_qc_geo\": 1,\r\n        \"street\": \"им. Валерия Гассия\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Адрес регистрации Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_registration_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_registration_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные о работе Шаг - 1 Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pension_status\": 10,\r\n    \"document_type\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные о работе Шаг - 1 Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_job_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_job_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные о работе Шаг - 2 Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organization\": {\r\n        \"org_address\": {\r\n            \"building\": \"4/7\",\r\n            \"corpus\": \"2\",\r\n            \"district\": null,\r\n            \"district_type\": null,\r\n            \"flat\": null,\r\n            \"place\": \"Краснодар\",\r\n            \"place_type\": \"г\",\r\n            \"postalcode\": \"350065\",\r\n            \"region\": \"Краснодарский\",\r\n            \"region_type\": \"край\",\r\n            \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n            \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n            \"service_fias_level\": 8,\r\n            \"service_kladr_id\": \"2300000100016740096\",\r\n            \"service_qc_geo\": 1,\r\n            \"street\": \"им. Валерия Гассия\",\r\n            \"street_type\": \"ул\",\r\n            \"subplace\": null,\r\n            \"subplace_type\": null\r\n        },\r\n        \"company_phone\": \"78888888888\",\r\n        \"employer_size\": 10,\r\n        \"income_amount\": 123000,\r\n        \"industry_code\": 10,\r\n        \"legal_form\": 10,\r\n        \"position\": \"Должность\",\r\n        \"position_level\": 10,\r\n        \"start_date\": \"2021-03-04T21:00:00.000Z\",\r\n        \"org_kpp\": \"503201001\",\r\n        \"org_name\": \"ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ БУЕР\",\r\n        \"org_type\": \"LEGAL\",\r\n        \"org_tax_number\": \"130351647310\",\r\n        \"total_work\": 1,\r\n        \"type\": 10\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные о работе Шаг - 2 Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_employment_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_employment_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Дополнительные сведения Открытие КН",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_loan/products/{{prodId}}/commit/enter_history_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_loan",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_history_data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BANCROT CONSALT",
+			"item": [
+				{
+					"name": "Создание Клиента БанкротКонс",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": \"spm@finfort.ru\",\r\n\"passport_lastname\": \"Тест\",\r\n\"passport_middlename\": \"тест\",\r\n\"passport_name\": \"тест\",\r\n\"personal_phone\": \"79360606046\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки БанкротКонс",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/bankrot_consult/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"bankrot_consult",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит 1стр",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/bankrot_consult/products/{{prodId}}/commit/enter_transaction_info",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"bankrot_consult",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_transaction_info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Персональные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birth_date\": \"1988-04-01T00:00:00.000+04:00\",\r\n    \"region\": 1,\r\n    \"indebtedness\": \"Более 250.000\",\r\n    \"property\": \"Единственное жилое помещени\",\r\n    \"loan_delinquencies\": \"Более 90 дней\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/bankrot_consult/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"bankrot_consult",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Персональные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/bankrot_consult/products/{{prodId}}/commit/enter_personal_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"bankrot_consult",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_personal_data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "КредитЕвропаБанк лидоген",
+			"item": [
+				{
+					"name": "Создание лида",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CreateRequest\": {\r\n    \"SURNAME\": \"Иванов\",\r\n    \"NAME\": \"Иван\",\r\n    \"PATRONYMIC\": \"Иванович\",\r\n    \"BIRTHDATE\": \"25.12.1990\",\r\n    \"GENDER\": \"M\",\r\n    \"CONDITIONS\": true,\r\n    \"EMAIL\": \"tst@sravni.ru\",\r\n    \"CARD_TYPE\": 1,\r\n    \"CREDIT_AMOUNT\": 133000,\r\n    \"CREDIT_MONTHLY_SALARY\": 25000,\r\n    \"CREDIT_GOAL\": 1,\r\n    \"CREDIT_TERM\": 48,\r\n    \"PHONE\": \"79111111111\",\r\n    \"BIRTH_SETTLEMENT\": \"Армавир\",\r\n    \"PASSPORT\": \"4466 333222\",\r\n    \"DOC_WHEN_ISSUED\": \"25.11.2015\",\r\n    \"PASSPORT_CODE\": \"461-322\",\r\n    \"DOC_ISSUED\": \"УВД 1 по Московской обл.\",\r\n    \"REGISTRATION_DATE\": \"25.12.2015\",\r\n    \"REGISTRATION_ADDRESS_REGION\": \"030\",\r\n    \"REGISTRATION_ADDRESS_CITY\": \"Москва\",\r\n    \"REGISTRATION_ADDRESS_LOCATION\": \"Ленинский проспект\",\r\n    \"REGISTRATION_ADDRESS_HOUSE\": \"10\",\r\n    \"REGISTRATION_ADDRESS_BUILDING\": \"3\",\r\n    \"REGISTRATION_ADDRESS_FLAT\": \"55\",\r\n    \"HOME_ADDRESS_REGION\": \"030\",\r\n    \"HOME_ADDRESS_CITY\": \"Москва\",\r\n    \"HOME_ADDRESS_LOCATION\": \"Ленинский проспект\",\r\n    \"HOME_ADDRESS_HOUSE\": \"10\",\r\n    \"HOME_ADDRESS_BUILDING\": \"3\",\r\n    \"HOME_ADDRESS_FLAT\": \"60\",\r\n    \"WORK_ADDRESS_REGION\": \"030\",\r\n    \"WORK_ADDRESS_CITY\": \"Москва\",\r\n    \"WORK_ADDRESS_LOCATION\": \"Ленинский проспект\",\r\n    \"WORK_ADDRESS_HOUSE\": \"10\",\r\n    \"WORK_ADDRESS_BUILDING\": \"3\",\r\n    \"WORK_ADDRESS_FLAT\": \"63\",\r\n    \"REGISTRATION_PHONE\": \"74952313234\",\r\n    \"HOME_PHONE\": \"74952313244\",\r\n    \"EMPLOYMENT_TYPE\": \"CL\",\r\n    \"ORGANIZATION_NAME\": \"РОМАШКА\",\r\n    \"START_DATE\": \"22.11.2018\",\r\n    \"ACTIVITY_FIELD\": \"AM\",\r\n    \"ORGANIZATION_POSITION\": \"001\",\r\n    \"WORK_PHONE\": \"74999134923\",\r\n    \"EDUCATION\": 5,\r\n    \"MARITAL_STATUS\": \"S\",\r\n    \"NUMBER_DEPENDENTS\": \"3\",\r\n    \"EXTRA_PHONE\": \"79123334455\",\r\n    \"EXTRA_PHONE_OWNER\": \"Номер родственника\",\r\n    \"FLAT_RENT\": 23000,\r\n    \"ADDITIONAL_INCOME\": 5000,\r\n    \"SNILS\": \"420-552-026 24\",\r\n    \"UTM_SOURCE\": \"string\",\r\n    \"UTM_MEDIUM\": \"string\",\r\n    \"UTM_CAMPAIGN\": \"string\",\r\n    \"UTM_TERM\": \"string\",\r\n    \"UTM_CONTENT\": \"string\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-test.comfortcredit.ru/uniapplong/?token=a8767b42d7c08a123175246a3df1edcf",
+							"protocol": "https",
+							"host": [
+								"api-test",
+								"comfortcredit",
+								"ru"
+							],
+							"path": [
+								"uniapplong",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "a8767b42d7c08a123175246a3df1edcf"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение статуса по ID заявки",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-test.comfortcredit.ru/uniapplong/6821910141?token=a8767b42d7c08a123175246a3df1edcf",
+							"protocol": "https",
+							"host": [
+								"api-test",
+								"comfortcredit",
+								"ru"
+							],
+							"path": [
+								"uniapplong",
+								"6821910141"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "a8767b42d7c08a123175246a3df1edcf"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ВТБ РКО",
+			"item": [
+				{
+					"name": "Получение токена",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "#7ba7996e6756de7601d039434f1a599cde387419ffc8ed2b7be86a5d307cfd98#0f29a3a83bb8149fc00c6c7236bf22787ad7757239950b475bb80824db3a6ebd",
+								"type": "text"
+							},
+							{
+								"key": "Date",
+								"value": "Tue, 8 Jun 2021 09:22:45 Europe/Moscow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://mb-partner.bm.ru/auth/ident",
+							"protocol": "https",
+							"host": [
+								"mb-partner",
+								"bm",
+								"ru"
+							],
+							"path": [
+								"auth",
+								"ident"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновление токенов",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "1c2e89d1f4ee25dac118eb0241b42286db74f25901214785a73a6b04bf6b7749",
+								"type": "text"
+							},
+							{
+								"key": "Rtoken",
+								"value": "4f3ef9e995849e02cfdf2fcdf9cc18ef6f99fdaf751e66468ea7e58214ffb6d9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://mb-partner.bm.ru/auth/refresh",
+							"protocol": "https",
+							"host": [
+								"mb-partner",
+								"bm",
+								"ru"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение списка анкет",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "820950d25a89b8364d4cee980954d265e90d916956c9bea1b56e348aa147cde3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://mb-partner.bm.ru/anketa",
+							"protocol": "https",
+							"host": [
+								"mb-partner",
+								"bm",
+								"ru"
+							],
+							"path": [
+								"anketa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Проверить анкету по ИНН",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "820950d25a89b8364d4cee980954d265e90d916956c9bea1b56e348aa147cde3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://mb-partner.bm.ru/auth/anketa/anketa_exists_inn?inn=1111111113",
+							"protocol": "https",
+							"host": [
+								"mb-partner",
+								"bm",
+								"ru"
+							],
+							"path": [
+								"auth",
+								"anketa",
+								"anketa_exists_inn"
+							],
+							"query": [
+								{
+									"key": "inn",
+									"value": "1111111113"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать анкету",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "820950d25a89b8364d4cee980954d265e90d916956c9bea1b56e348aa147cde3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://mb-partner.bm.ru/anketa/add",
+							"protocol": "https",
+							"host": [
+								"mb-partner",
+								"bm",
+								"ru"
+							],
+							"path": [
+								"anketa",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INGURU",
+			"item": [
+				{
+					"name": "Создание Клиента МультиОсаго",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": \"vs@finfort.ru\",\r\n\"passport_lastname\": \"Омаров\",\r\n\"passport_middlename\": \"Кайратович\",\r\n\"passport_name\": \"Ерлан\",\r\n\"personal_phone\": \"79360000022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки МультиОсаго",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Способ заполнения данных МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"avtocod_query\": \"С891НО799\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Способ заполнения данных МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_data_type",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_data_type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные Авто МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_auto_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_auto_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Диаг карта МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Диагностическая карта МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_diagnostic_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_diagnostic_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Водители МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"multidrive\": 1    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Водители МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_drivers_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_drivers_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Собственник МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"owner_lastname\": \"Омаров\",\r\n    \"owner_firstname\": \"Ерлан\",\r\n    \"owner_middlename\": \"Кайратович\",\r\n    \"owner_birthdate\": \"1993-09-19T20:00:00.000Z\",\r\n    \"owner_passportSerial\": \"4614\",\r\n    \"owner_passportNumber\": \"587994\",\r\n    \"owner_passport_date\": \"2014-07-24T20:00:00.000Z\",\r\n    \"owner_passport_address\": {\r\n        \"building\": \"56\",\r\n        \"corpus\": null,\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Астрахань\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"414000\",\r\n        \"region\": \"Астраханская\",\r\n        \"region_type\": \"обл\",\r\n        \"service_address\": \"414000, Астраханская обл, г Астрахань, ул Ленина, д 56\",\r\n        \"service_fias_id\": \"7c8b7b6d-d07a-4a5c-b28b-231c807840cb\",\r\n        \"service_fias_level\": 7,\r\n        \"service_kladr_id\": \"30000001000393200\",\r\n        \"service_place_fias_id\": \"a101dd8b-3aee-4bda-9c61-9df106f145ff\",\r\n        \"service_place_kladr_id\": \"3000000100000\",\r\n        \"service_qc_geo\": 2,\r\n        \"street\": \"Ленина\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Собственник МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_owner_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_owner_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Страхователь МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport_lastname\": \"Омаров\",\r\n    \"passport_name\": \"Ерлан\",\r\n    \"passport_middlename\": \"Кайратович\",\r\n    \"birth_date\": \"1993-09-19T20:00:00.000Z\",\r\n    \"passport_seria\": \"4614\",\r\n    \"passport_number\": \"587994\",\r\n    \"passport_date\": \"2014-07-24T20:00:00.000Z\",\r\n    \"passport_address\": {\r\n        \"building\": \"56\",\r\n        \"corpus\": null,\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Астрахань\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"414000\",\r\n        \"region\": \"Астраханская\",\r\n        \"region_type\": \"обл\",\r\n        \"service_address\": \"414000, Астраханская обл, г Астрахань, ул Ленина, д 56\",\r\n        \"service_fias_id\": \"7c8b7b6d-d07a-4a5c-b28b-231c807840cb\",\r\n        \"service_fias_level\": 7,\r\n        \"service_kladr_id\": \"30000001000393200\",\r\n        \"service_place_fias_id\": \"a101dd8b-3aee-4bda-9c61-9df106f145ff\",\r\n        \"service_place_kladr_id\": \"3000000100000\",\r\n        \"service_qc_geo\": 2,\r\n        \"street\": \"Ленина\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Страхователь МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_insurer_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_insurer_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Сведения о полисе МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"registration_date\": \"2021-06-29T21:00:00.000Z\",\r\n    \"registration_use_period\": 12,\r\n    \"purpose\": \"personal\",\r\n    \"policy_name\": \"Ерлан\",\r\n    \"personal_phone\": \"73322423423\",\r\n    \"passport_number\": \"587994\",\r\n    \"e_mail\": \"vs@finfort.ru\",\r\n    \"registration_use_trailer\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Сведения о полисе МО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/inguru_osago/products/{{prodId}}/commit/enter_policy_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"inguru_osago",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_policy_data"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "TINKOFFRKO",
+			"item": [
+				{
+					"name": "Создание Клиента ТинькРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": null,\r\n\"passport_lastname\": \"тест\",\r\n\"passport_middlename\": \"тест\",\r\n\"passport_name\": \"Тест\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки ТинькРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/tinkoff_bank_rko/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"tinkoff_bank_rko",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заполнение данных ТинькРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"org_tax_number\": \"7223495800\",\r\n    \"director_data\": {\r\n        \"birth_date\": \"1976-05-26T01:00:00.000Z\",\r\n        \"birth_place\": \"fff\",\r\n        \"passport_address\": {\r\n            \"building\": \"44\",\r\n            \"corpus\": null,\r\n            \"district\": null,\r\n            \"district_type\": null,\r\n            \"flat\": null,\r\n            \"place\": \"Санкт-Петербург\",\r\n            \"place_type\": \"г\",\r\n            \"postalcode\": \"197136\",\r\n            \"region\": \"Санкт-Петербург\",\r\n            \"region_type\": \"г\",\r\n            \"service_address\": \"197136, г Санкт-Петербург, ул Ленина, д 44\",\r\n            \"service_fias_id\": \"1faa3b1e-8558-42b0-9956-154daafe999f\",\r\n            \"service_fias_level\": 7,\r\n            \"service_kladr_id\": \"78000000000069000\",\r\n            \"service_place_fias_id\": \"c2deb16a-0330-4f05-821f-1d09c93331e6\",\r\n            \"service_place_kladr_id\": \"7800000000000\",\r\n            \"service_qc_geo\": 0,\r\n            \"street\": \"Ленина\",\r\n            \"street_type\": \"ул\",\r\n            \"subplace\": null,\r\n            \"subplace_type\": null\r\n        },\r\n        \"passport_date\": \"1996-05-26T01:00:00.000Z\",\r\n        \"passport_number\": \"270617\",\r\n        \"passport_police\": \"ОУФМС\",\r\n        \"passport_police_code\": \"260-015\",\r\n        \"passport_seria\": \"0709\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/tinkoff_bank_rko/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"tinkoff_bank_rko",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит заполнение данных ТинькРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/tinkoff_bank_rko/products/{{prodId}}/commit/fill_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"tinkoff_bank_rko",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"fill_data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TOCHKA",
+			"item": [
+				{
+					"name": "Создание Клиента ТочкаРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": null,\r\n\"passport_lastname\": \"тест\",\r\n\"passport_middlename\": \"тест\",\r\n\"passport_name\": \"Тест\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки ТочкаРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/tochka_bank_rko/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"tochka_bank_rko",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заполнение данных ТочкаРКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"org_type\": \"Юридическое лицо\",\r\n    \"org_name\": \"sцукер\",\r\n    \"org_tax_number\": \"7223495800\",\r\n    \"org_address\": {\r\n        \"building\": \"44\",\r\n        \"corpus\": null,\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Санкт-Петербург\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"197136\",\r\n        \"region\": \"Санкт-Петербург\",\r\n        \"region_type\": \"г\",\r\n        \"service_address\": \"197136, г Санкт-Петербург, ул Ленина, д 44\",\r\n        \"service_fias_id\": \"1faa3b1e-8558-42b0-9956-154daafe999f\",\r\n        \"service_fias_level\": 7,\r\n        \"service_kladr_id\": \"78000000000069000\",\r\n        \"service_place_fias_id\": \"c2deb16a-0330-4f05-821f-1d09c93331e6\",\r\n        \"service_place_kladr_id\": \"7800000000000\",\r\n        \"service_qc_geo\": 0,\r\n        \"street\": \"Ленина\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    },\r\n    \"gender\": 0,\r\n    \"birth_date\": \"1976-05-25T01:00:00.000Z\",\r\n    \"document\": {\r\n        \"doc_date\": \"2021-05-25T01:00:00.000Z\",\r\n        \"doc_number\": \"070407\",\r\n        \"doc_seria\": \"0704\",\r\n        \"doc_type\": 21\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/tochka_bank_rko/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"tochka_bank_rko",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит заполнение данных ТинькРКО Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/tochka_bank_rko/products/{{prodId}}/commit/fill_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"tochka_bank_rko",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"fill_data"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "halva",
+			"item": [
+				{
+					"name": "Создание Клиента Halva",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": null,\r\n\"passport_lastname\": \"тест\",\r\n\"passport_middlename\": \"тест\",\r\n\"passport_name\": \"Тест\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки halva",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/sovcom_halva/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"sovcom_halva",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Личные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birth_date\": \"1946-07-02T20:00:00.000Z\",\r\n    \"passport_middlename\": \"asd\",\r\n    \"passport_name\": \"фыв\",\r\n    \"passport_lastname\": \"фыв\",\r\n    \"personal_phone\": \"73453453453\",\r\n    \"region\": 22,\r\n    \"consent\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/sovcom_halva/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"sovcom_halva",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/sovcom_halva/products/{{prodId}}/commit/client_submit",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"sovcom_halva",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"client_submit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GAZPROM UNIVERSAL",
+			"item": [
+				{
+					"name": "Создание Клиента ГазпромУниверс",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": sss@tessst.ff,\r\n\"passport_lastname\": \"Тестова\",\r\n\"passport_middlename\": \"Теститта\",\r\n\"passport_name\": \"Тестовичева\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки Газпром Универс",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Введение данных по кредиту",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credit_type\": \"\",\r\n    \"car_type\": \"\",\r\n    \"car_price\": \"\",\r\n    \"car_marka\": \"\",\r\n    \"car_model\": \"\",    \r\n    \"credit_ammount\": \"\",\r\n    \"credit_date\": \"\",\r\n    \"insuranche\": \"\",\r\n    \"car_zalog\": \"\",\r\n    \"credit_city\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные по кредиту",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Личные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport_lastname\": \"\",\r\n    \"passport_firstname\": \"\",\r\n    \"passport_middlename\": \"\",\r\n    \"FIO MENYALOS\": false,\r\n    \"pred lastname\": \"\",\r\n    \"pred firstname\": \"\",\r\n    \"pred middlename\": \"\",\r\n    \"pol\": \"\",\r\n    \"birth_date\": \"\",\r\n    \"country_place\": \"\",\r\n    \"birth_place\": \"\",\r\n    \"e-mail\": \"\",\r\n    \"phone\": \"\",\r\n    \"dop_phone\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Личные Данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "СОПД",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sms\": \"\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит СОПД",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Паспортные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport\": {\r\n        \"passport_date\": \"2021-07-06T00:00:00+03:00\",\r\n        \"passport_number\": \"080808\",\r\n        \"passport_police\": \"ОТДЕЛЕНИЕМ УФМС РОССИИ ПО СТАВРОПОЛЬСКОМУ КРАЮ В КОЧУБЕЕВСКОМ РАЙОНЕ\",\r\n        \"passport_police_code\": \"260-015\",\r\n        \"passport_seria\": \"0707\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Паспортные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Адрес регистрации",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport_address\": {\r\n        \"building\": \"4/7\",\r\n        \"corpus\": \"2\",\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Краснодар\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"350065\",\r\n        \"region\": \"Краснодарский\",\r\n        \"region_type\": \"край\",\r\n        \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n        \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n        \"service_fias_level\": 8,\r\n        \"service_kladr_id\": \"2300000100016740096\",\r\n        \"service_qc_geo\": 1,\r\n        \"street\": \"им. Валерия Гассия\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    },\r\n    \"registration_date\": \"2021-06-01T00:00:00.000+03:00\",\r\n    \"current_address_optional\": true,\r\n    \"current_address\": {\r\n        \"building\": \"4/7\",\r\n        \"corpus\": \"2\",\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": null,\r\n        \"place\": \"Краснодар\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"350065\",\r\n        \"region\": \"Краснодарский\",\r\n        \"region_type\": \"край\",\r\n        \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n        \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n        \"service_fias_level\": 8,\r\n        \"service_kladr_id\": \"2300000100016740096\",\r\n        \"service_qc_geo\": 1,\r\n        \"street\": \"им. Валерия Гассия\",\r\n        \"street_type\": \"ул\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Адрес регистрации",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные о работе",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employment\": {\r\n        \"address\": {\r\n            \"building\": \"4/7\",\r\n            \"corpus\": \"2\",\r\n            \"district\": null,\r\n            \"district_type\": null,\r\n            \"flat\": null,\r\n            \"place\": \"Краснодар\",\r\n            \"place_type\": \"г\",\r\n            \"postalcode\": \"350065\",\r\n            \"region\": \"Краснодарский\",\r\n            \"region_type\": \"край\",\r\n            \"service_address\": \"350065, Краснодарский край, г Краснодар, ул им. Валерия Гассия, д 4/7 к 2\",\r\n            \"service_fias_id\": \"432d87d3-8cfa-4942-9f07-0ac8b65aeb77\",\r\n            \"service_fias_level\": 8,\r\n            \"service_kladr_id\": \"2300000100016740096\",\r\n            \"service_qc_geo\": 1,\r\n            \"street\": \"им. Валерия Гассия\",\r\n            \"street_type\": \"ул\",\r\n            \"subplace\": null,\r\n            \"subplace_type\": null\r\n        },\r\n        \"company_name\": \"Название орга\",\r\n        \"company_phone\": \"78888888888\",\r\n        \"employer_size\": 10,\r\n        \"income_amount\": 123000,\r\n        \"industry_code\": 10,\r\n        \"legal_form\": 10,\r\n        \"position\": \"Должность\",\r\n        \"position_level\": 10,\r\n        \"start_date\": \"2021-01-31T21:00:00.000Z\",\r\n        \"tax_number\": \"130351647310\",\r\n        \"total_work\": 1,\r\n        \"type\": 10\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/openbank_credit_card/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"openbank_credit_card",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные о работе",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Дополнительная информация",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"obrazovanie\": \"\",\r\n    \"semeinoe\": \"\",\r\n    \"doxod\": \"\",\r\n    \"kod slovo\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Дополнительная информация",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/{{}}/products/{{prodId}}/commit/{{}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"{{}}",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PSB",
+			"item": [
+				{
+					"name": "apiStatus",
+					"item": [
+						{
+							"name": "apiTestToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"acctoken\", pm.response.json().data['access_token'])"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"email\": \"shuvalov.d@finfort.ru\",\r\n\"password\": \"Finfort123!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.lk.finstar.online/fo/v1.0.0/user/login",
+									"protocol": "https",
+									"host": [
+										"api",
+										"lk",
+										"finstar",
+										"online"
+									],
+									"path": [
+										"fo",
+										"v1.0.0",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "apiTestToken Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"global_status\" : 50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.lk.finstar.online/fo/v1.0.0/orders/set-global-status/620297?access-token={{acctoken}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"lk",
+										"finstar",
+										"online"
+									],
+									"path": [
+										"fo",
+										"v1.0.0",
+										"orders",
+										"set-global-status",
+										"620297"
+									],
+									"query": [
+										{
+											"key": "access-token",
+											"value": "{{acctoken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание Клиента ОткрытиеРКО Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": \"spm@finfort.ru\",\r\n\"passport_lastname\": \"Тестов\",\r\n\"passport_middlename\": \"тест\",\r\n\"passport_name\": \"Тест\",\r\n\"personal_phone\": \"79368777946\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки Промсвязь РКО",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/promsvyaz_rko/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"promsvyaz_rko",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заполнение данных",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organization\": {\r\n        \"org_name\": \"Альтаир\",\r\n        \"org_tax_number\": \"438489096370\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/promsvyaz_rko/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"promsvyaz_rko",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ALFA PRESCOR",
+			"item": [
+				{
+					"name": "Создание Клиента Alfa Prescor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"clientsId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\": \"astra.j@gtc.spm\",\r\n    \"passport_lastname\": \"Тест\",\r\n    \"passport_middlename\": \"Тест\",\r\n    \"passport_name\": \"Тест\",\r\n    \"personal_phone\": \"79162497746\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/clients",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание Заявки Alfa Prescor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"prodId\", pm.response.json().response.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"{{clientsId}}\",\r\n    \"utm\": {\r\n        \"utm_campaign\": \"finbrokerweb\",\r\n        \"utm_content\": \"finbrokerweb\",\r\n        \"utm_medium\": \"finbrokerweb\",\r\n        \"utm_source\": \"finbrokerweb\",\r\n        \"utm_term\": \"finbrokerweb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Выбор региона Альфа прескор",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"region\": 77   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит заполнение данных АльфаПрескор",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products/{{prodId}}/commit/enter_region_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_region_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Контактные данные АльфаПрескор",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gender\": 0,\r\n    \"birth_date\": \"2003-08-02T20:00:00.000Z\",\r\n    \"credit_limit\": 100000    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит контактные данные АльфаПрескор",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products/{{prodId}}/commit/enter_contact_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_contact_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Данные клиента АльфаПрескор",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passport_seria\": \"4614\",\r\n    \"passport_number\": \"587994\",\r\n    \"passport_police_code\": \"500-074\",\r\n    \"passport_police\": \"ТП 2 МЕЖРАЙОННОГО ОУФМС РОССИИ ПО МОСКОВОСКОЙ ОБЛ. В ГОРОДСКОМ ПОСЕЛЕНИИ ЛЮБЕРЦЫ\",\r\n    \"passport_date\": \"2014-07-23T20:00:00.000Z\",\r\n    \"birth_place\": \"Зыряновск\",\r\n    \"passport_address\": {\r\n        \"building\": \"14\",\r\n        \"corpus\": null,\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": \"179\",\r\n        \"place\": \"Москва\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"111674\",\r\n        \"region\": \"Москва\",\r\n        \"region_type\": \"г\",\r\n        \"service_address\": \"111674, г Москва, пр-кт Защитников Москвы, д 14, кв 179\",\r\n        \"service_fias_code\": \"77000000000000074510014\",\r\n        \"service_fias_id\": \"07c13fb7-e38c-4b54-b317-011e0dc7abd1\",\r\n        \"service_fias_level\": 9,\r\n        \"service_kladr_id\": \"7700000000074510014\",\r\n        \"service_place_fias_id\": \"0c5b2444-70a0-4932-980c-b4dc0d3f02b5\",\r\n        \"service_place_kladr_id\": \"7700000000000\",\r\n        \"service_qc_geo\": 0,\r\n        \"street\": \"Защитников Москвы\",\r\n        \"street_type\": \"пр-кт\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    },\r\n    \"current_address_optional\": true,\r\n    \"current_address\":\r\n    {\r\n        \"building\": \"14\",\r\n        \"corpus\": null,\r\n        \"district\": null,\r\n        \"district_type\": null,\r\n        \"flat\": \"179\",\r\n        \"place\": \"Москва\",\r\n        \"place_type\": \"г\",\r\n        \"postalcode\": \"111674\",\r\n        \"region\": \"Москва\",\r\n        \"region_type\": \"г\",\r\n        \"service_address\": \"111674, г Москва, пр-кт Защитников Москвы, д 14, кв 179\",\r\n        \"service_fias_code\": \"77000000000000074510014\",\r\n        \"service_fias_id\": \"07c13fb7-e38c-4b54-b317-011e0dc7abd1\",\r\n        \"service_fias_level\": 9,\r\n        \"service_kladr_id\": \"7700000000074510014\",\r\n        \"service_place_fias_id\": \"0c5b2444-70a0-4932-980c-b4dc0d3f02b5\",\r\n        \"service_place_kladr_id\": \"7700000000000\",\r\n        \"service_qc_geo\": 0,\r\n        \"street\": \"Защитников Москвы\",\r\n        \"street_type\": \"пр-кт\",\r\n        \"subplace\": null,\r\n        \"subplace_type\": null\r\n    },\r\n    \"work_place\": \"ООО ФИНФОРТ РИСЕРЧ ЭНД ДЕВЕЛОПМЕНТ\",\r\n    \"monthly_income\": 500000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products/{{prodId}}",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products",
+								"{{prodId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Коммит Данные клиента АльфаПрескор",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{api}}/marketplace/alfabank_prescoring/products/{{prodId}}/commit/enter_client_data",
+							"host": [
+								"{{host}}{{api}}"
+							],
+							"path": [
+								"marketplace",
+								"alfabank_prescoring",
+								"products",
+								"{{prodId}}",
+								"commit",
+								"enter_client_data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
